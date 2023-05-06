@@ -36,6 +36,7 @@ function Home() {
         className={styles.searchInput}
       />
 
+
       <ul className={styles.jobList}>
         {filteredJobs.map((job) => (
           <li key={job.id} className={styles.jobCard}>
