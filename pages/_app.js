@@ -1,5 +1,14 @@
-import '@/styles/globals.css'
+import 'tailwindcss/tailwind.css';
+import { useRouter } from 'next/router';
 
-export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />
+function MyApp({ Component, pageProps }) {
+  const router = useRouter();
+  const { id } = router.query;
+
+  
+
+  return <Component {...pageProps} />;
 }
+
+export default MyApp;
+

@@ -90,4 +90,8 @@
   color: #808582;
   font-size: 16px;
 }
+.mapContainer {
+  height: 400px;
+  margin-bottom: 20px;
+}
 

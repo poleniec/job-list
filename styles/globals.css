@@ -1,3 +1,7 @@
 body {
   background-color: #e0ddddce; 
 }
+a {
+  text-decoration: none !important;
+  color: inherit; 
+}
