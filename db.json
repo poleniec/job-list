@@ -22,7 +22,11 @@
         "Contract of employment or B2B contract"
       ],
       "techStack": ["AWS", "CI/CD", "Git", "Kubernetes", "Ansible", "Terraform"],
-      "techRatings": [4, 5, 3, 4, 2, 5]
+      "techRatings": [4, 5, 3, 4, 2, 5],
+      "geocoding": {
+        "latitude": 52.259077,
+        "longitude": 20.993275
+      }
     },
     {
       "id": 2,
@@ -30,13 +34,17 @@
       "city": "Kraków",
       "company": "GlobalTech",
       "salary": "10000-15000 PLN",
-      "logo": "/logos/globaltech.png",
+      "logo": "/jobs-logos/966426-acme.jpg",
       "description": "",
       "duties": [],
       "requirements": [],
       "benefits": [],
       "techStack": ["Node.js", "Express.js", "MongoDB", "Docker", "Redis", "GraphQL"],
-      "techRatings": [3, 4, 3, 2, 4, 5]
+      "techRatings": [3, 4, 3, 2, 4, 5],
+      "geocoding": {
+        "latitude": 50.059112,
+        "longitude": 19.937892
+      }
     },
     {
       "id": 3,
@@ -44,13 +52,17 @@
       "city": "Kraków",
       "company": "Software Solutions",
       "salary": "10000-15000 PLN",
-      "logo": "/logos/software-solutions.png",
+      "logo": "/jobs-logos/966426-acme.jpg",
       "description": "",
       "duties": [],
       "requirements": [],
       "benefits": [],
       "techStack": ["Java", "Spring Boot", "MySQL", "Kafka", "Elasticsearch", "Docker"],
-      "techRatings": [4, 3, 5, 3, 4, 2]
+      "techRatings": [4, 3, 5, 3, 4, 2],
+      "geocoding": {
+        "latitude": 50.056582,
+        "longitude": 19.938395
+      }
     },
     {
       "id": 4,
@@ -58,13 +70,17 @@
       "city": "Warszawa",
       "company": "Acmeme Corp",
       "salary": "8000-12000 PLN",
-      "logo": "/logos/acmeme-corp.png",
+      "logo": "/jobs-logos/966426-acme.jpg",
       "description": "",
       "duties": [],
       "requirements": [],
       "benefits": [],
       "techStack": ["React", "Redux", "TypeScript", "Webpack", "Jest", "Storybook"],
-      "techRatings": [5, 4, 5, 3, 4, 5]
+      "techRatings": [5, 4, 5, 3, 4, 5],
+      "geocoding": {
+        "latitude": 50.059699,
+        "longitude": 19.975751
+      }
     },
     {
       "id": 5,
@@ -72,13 +88,17 @@
       "city": "Kraków",
       "company": "GlobalTech",
       "salary": "10000-15000 PLN",
-      "logo": "/logos/globaltech.png",
+      "logo": "/jobs-logos/966426-acme.jpg",
       "description": "",
       "duties": [],
       "requirements": [],
       "benefits": [],
       "techStack": ["Python", "Django", "PostgreSQL", "AWS", "Docker", "RESTful API"],
-      "techRatings": [3, 4, 3, 5, 2, 4]
+      "techRatings": [3, 4, 3, 5, 2, 4],
+      "geocoding": {
+        "latitude": 50.0647,
+        "longitude": 19.9450
+      }
     },
     {
       "id": 6,
@@ -86,13 +106,17 @@
       "city": "Kraków",
       "company": "Software Solutions",
       "salary": "10000-15000 PLN",
-      "logo": "/logos/software-solutions.png",
+      "logo": "/jobs-logos/966426-acme.jpg",
       "description": "",
       "duties": [],
       "requirements": [],
       "benefits": [],
       "techStack": ["C#", ".NET Core", "SQL Server", "Azure", "Entity Framework", "MVC"],
-      "techRatings": [4, 5, 4, 3, 5, 3]
+      "techRatings": [4, 5, 4, 3, 5, 3],
+      "geocoding": {
+        "latitude": 50.0497,
+        "longitude": 19.9445
+      }
     }
   ]
 }

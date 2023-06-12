@@ -36,7 +36,7 @@ function ApplyPage() {
           rows={4}
           margin="normal"
         />
-        <Button variant="contained" color="primary" type="submit">
+        <Button  color="primary" type="submit">
           Send
         </Button>
       </form>
