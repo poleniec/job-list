@@ -36,9 +36,9 @@ function ApplyPage() {
           rows={4}
           margin="normal"
         />
-        <Button  color="primary" type="submit">
-          Send
-        </Button>
+        <Button variant="outlined" href="#outlined-buttons">
+  SEND
+</Button>
       </form>
     </Box>
   );

@@ -1,24 +1,38 @@
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+
 import JobDetail from './JobDetail';
 
-export async function getServerSideProps(context) {
-  const { id } = context.query;
+function JobDetailPage() {
+  const [job, setJob] = useState(null);
+  const router = useRouter();
+  const { id } = router.query;
 
-  const res = await fetch(`http://localhost:5000/jobs/${id}`);
-  const job = await res.json();
+  useEffect(() => {
+    async function fetchJob() {
+      const res = await fetch(`http://localhost:5000/jobs/${id}`);
+      const data = await res.json();
+
+      if (!data) {
+        // Obsłuż brak danych
+        return;
+      }
+
+      setJob(data);
+    }
+
+    if (id) {
+      fetchJob();
+    }
+  }, [id]);
 
   if (!job) {
-    return {
-      notFound: true,
-    };
+    return <div>Loading...</div>;
   }
 
-  return {
-    props: {
-      job,
-    },
-  };
+  return <JobDetail job={job} />;
 }
 
-export default JobDetail;
+export default JobDetailPage;
 
 
