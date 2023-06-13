@@ -83,7 +83,7 @@ function JobDetail({ job }) {
         color="error"
         onClick={handleApply}
         className="mt-4"
-        sx={{ backgroundColor: 'purple', width: '1060px' }}
+        sx={{ backgroundColor: 'blue', width: '1060px' }}
       >
         Apply
       </Button>

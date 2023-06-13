@@ -37,11 +37,17 @@ function MyApp({ Component, pageProps }) {
         const popup = new mapboxgl.Popup().setHTML(popupContent);
 
         marker.setPopup(popup);
+
+        // Dodaj obsługę kliknięcia w marker
+        marker.getElement().addEventListener('click', () => {
+          router.push(`/job/${job.id}`);
+        });
       });
 
       return () => map.remove();
     }
-  }, [router.pathname]); 
+  }, [router.pathname]);
+
   return (
     <div>
       {router.pathname !== '/job/apply' && (
@@ -64,6 +70,7 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default MyApp;
+
 
 
 
