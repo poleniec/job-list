@@ -1,53 +1,39 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import Link from 'next/link';
 import styles from '../styles/Home.module.css';
-import db from '../db.json';
+import { MapContext } from './MapContext';
+import JobList from './JobList';
 
 function Home() {
   const [jobs, setJobs] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const { filteredJobs, updateFilteredJobs } = useContext(MapContext);
 
   useEffect(() => {
-    setJobs(db.jobs);
-  }, []);
+    fetch(`http://localhost:5000/jobs?q=${searchTerm}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setJobs(data);
+        updateFilteredJobs(data);
+      })
+      .catch((error) => console.log(error));
+  }, [searchTerm, updateFilteredJobs]);
 
   function handleSearch(e) {
     setSearchTerm(e.target.value);
   }
 
-  const filteredJobs = jobs.filter((job) =>
-    job.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
   return (
     <div className={styles.container}>
       <input
         type="text"
-        placeholder="Search jobs"
+        placeholder="Szukaj ofert pracy"
         value={searchTerm}
         onChange={handleSearch}
         className={styles.searchInput}
       />
 
-      <ul className={styles.jobList}>
-        {filteredJobs.map((job) => (
-          <Link key={job.id} href={`/job/${job.id}`} passHref>
-            <li className={styles.jobCard}>
-              <div className={styles.jobLogoContainer}>
-                <img className={styles.jobLogo} src={job.logo} alt={`${job.company} Logo`} />
-              </div>
-              <div className={styles.jobInfo}>
-                <h3 className={styles.jobTitle}>{job.title}</h3>
-                <div className={styles.jobDetails}>
-                  <p className={styles.jobCity}>{job.city}</p>
-                  <p className={styles.jobCompany}>{job.company}</p>
-                </div>
-                <p className={styles.jobSalary}>{job.salary}</p>
-              </div>
-            </li>
-          </Link>
-        ))}
-      </ul>
+      <JobList jobs={jobs} />
     </div>
   );
 }

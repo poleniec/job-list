@@ -14,7 +14,7 @@ function JobDetailPage() {
       const data = await res.json();
 
       if (!data) {
-        // Obsłuż brak danych
+        
         return;
       }
 
