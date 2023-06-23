@@ -4,7 +4,7 @@ import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import React, { useEffect, useState } from 'react';
 import { MapContext, MapProvider } from './MapContext';
-import Home from './index';
+
 
 mapboxgl.accessToken =
   'pk.eyJ1IjoicG9sZW5pZWMiLCJhIjoiY2xpdDIydjhnMHFsdTNlb3Roa3ZzdzB0eiJ9.ffyRmJngLhj1hRsfg5bQUw';
@@ -79,5 +79,4 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default MyApp;
-
 

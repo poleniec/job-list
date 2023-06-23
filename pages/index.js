@@ -1,22 +1,15 @@
-import { useState, useEffect, useContext } from 'react';
-import Link from 'next/link';
+import { useEffect, useContext, useState } from 'react';
 import styles from '../styles/Home.module.css';
 import { MapContext } from './MapContext';
-import JobList from './JobList';
+import JobList from './components/JobList';
+
 
 function Home() {
-  const [jobs, setJobs] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
   const { filteredJobs, updateFilteredJobs } = useContext(MapContext);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
-    fetch(`http://localhost:5000/jobs?q=${searchTerm}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setJobs(data);
-        updateFilteredJobs(data);
-      })
-      .catch((error) => console.log(error));
+    updateFilteredJobs(searchTerm);
   }, [searchTerm, updateFilteredJobs]);
 
   function handleSearch(e) {
@@ -33,7 +26,7 @@ function Home() {
         className={styles.searchInput}
       />
 
-      <JobList jobs={jobs} />
+      <JobList jobs={filteredJobs} />
     </div>
   );
 }

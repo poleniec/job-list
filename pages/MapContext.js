@@ -1,12 +1,17 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useCallback } from "react";
 
 export const MapContext = createContext();
 
 export const MapProvider = ({ children }) => {
   const [filteredJobs, setFilteredJobs] = useState([]);
-  const updateFilteredJobs = (jobs) => {
-    setFilteredJobs(jobs);
-  };
+  const updateFilteredJobs = useCallback((searchTerm) => {
+    fetch(`http://localhost:5000/jobs?q=${searchTerm}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setFilteredJobs(data);
+      })
+      .catch((error) => console.log(error));
+  }, []);
 
   return (
     <MapContext.Provider value={{ filteredJobs, updateFilteredJobs }}>
@@ -14,3 +19,4 @@ export const MapProvider = ({ children }) => {
     </MapContext.Provider>
   );
 };
+
