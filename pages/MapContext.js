@@ -2,7 +2,7 @@ import React, { createContext, useState, useCallback } from "react";
 
 export const MapContext = createContext();
 
-export const MapProvider = ({ children }) => {
+export const JobProvider = ({ children }) => {
   const [filteredJobs, setFilteredJobs] = useState([]);
   const updateFilteredJobs = useCallback((searchTerm) => {
     fetch(`http://localhost:5000/jobs?q=${searchTerm}`)

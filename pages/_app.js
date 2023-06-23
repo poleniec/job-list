@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import React, { useEffect, useState } from 'react';
-import { MapContext, MapProvider } from './MapContext';
+import { JobProvider } from './MapContext';
 
 
 mapboxgl.accessToken =
@@ -56,7 +56,7 @@ function MyApp({ Component, pageProps }) {
   }, [router.pathname]);
 
   return (
-    <MapProvider>
+    <JobProvider>
       <div>
         {router.pathname !== '/job/apply' && (
           <div
@@ -74,7 +74,7 @@ function MyApp({ Component, pageProps }) {
 
         <Component {...pageProps} />
       </div>
-    </MapProvider>
+    </JobProvider>
   );
 }
 
