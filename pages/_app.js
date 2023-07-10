@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import React, { useEffect, useState } from 'react';
-import { JobProvider } from './MapContext';
+import { JobProvider } from './JobContext';
 
 
 mapboxgl.accessToken =
@@ -79,4 +79,3 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default MyApp;
-

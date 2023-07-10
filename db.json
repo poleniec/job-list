@@ -14,14 +14,14 @@
         "Providing risk-based solutions including exploratory or experienced-based test methods"
       ],
       "requirements": [
-        "At least 3 years of experience in similar role",
-        "Experience in analysing customer needs"
+        "At least 3 years of experience in a similar role",
+        "Experience in analyzing customer needs"
       ],
       "benefits": [
         "Fully remote or onsite work (in our Warsaw office)",
-        "Contract of employment or B2B contract"
+        "Employment contract or B2B contract"
       ],
-      "techStack": ["AWS", "CI/CD", "Git", "Kubernetes", "Ansible", "Terraform"],
+      "tech": "1, 2, 3, 4, 5, 6",
       "techRatings": [4, 5, 3, 4, 2, 5],
       "geocoding": {
         "latitude": 52.259077,
@@ -39,7 +39,7 @@
       "duties": [],
       "requirements": [],
       "benefits": [],
-      "techStack": ["Node.js", "Express.js", "MongoDB", "Docker", "Redis", "GraphQL"],
+      "tech": "7, 8, 9, 10, 11, 12",
       "techRatings": [3, 4, 3, 2, 4, 5],
       "geocoding": {
         "latitude": 50.059112,
@@ -57,7 +57,7 @@
       "duties": [],
       "requirements": [],
       "benefits": [],
-      "techStack": ["Java", "Spring Boot", "MySQL", "Kafka", "Elasticsearch", "Docker"],
+      "tech": "13, 14, 15, 16, 17, 18",
       "techRatings": [4, 3, 5, 3, 4, 2],
       "geocoding": {
         "latitude": 50.056582,
@@ -75,7 +75,7 @@
       "duties": [],
       "requirements": [],
       "benefits": [],
-      "techStack": ["React", "Redux", "TypeScript", "Webpack", "Jest", "Storybook"],
+      "tech": "19, 20, 21, 22, 23, 24",
       "techRatings": [5, 4, 5, 3, 4, 5],
       "geocoding": {
         "latitude": 50.059699,
@@ -93,7 +93,7 @@
       "duties": [],
       "requirements": [],
       "benefits": [],
-      "techStack": ["Python", "Django", "PostgreSQL", "AWS", "Docker", "RESTful API"],
+      "tech": "25, 26, 27, 28, 29, 30",
       "techRatings": [3, 4, 3, 5, 2, 4],
       "geocoding": {
         "latitude": 50.0647,
@@ -111,12 +111,47 @@
       "duties": [],
       "requirements": [],
       "benefits": [],
-      "techStack": ["C#", ".NET Core", "SQL Server", "Azure", "Entity Framework", "MVC"],
+      "tech": "31, 32, 33, 34, 35, 36",
       "techRatings": [4, 5, 4, 3, 5, 3],
       "geocoding": {
         "latitude": 50.0497,
         "longitude": 19.9445
       }
     }
-  ]
-}
+  ],
+  "tech": [
+    { "id": 1, "name": "AWS" },
+  { "id": 2, "name": "CI/CD" },
+  { "id": 3, "name": "Git" },
+  { "id": 4, "name": "Kubernetes" },
+  { "id": 5, "name": "Ansible" },
+  { "id": 6, "name": "Terraform" },
+  { "id": 7, "name": "Node.js" },
+  { "id": 8, "name": "Express.js" },
+  { "id": 9, "name": "MongoDB" },
+  { "id": 10, "name": "Docker" },
+  { "id": 11, "name": "Redis" },
+  { "id": 12, "name": "GraphQL" },
+  { "id": 13, "name": "Java" },
+  { "id": 14, "name": "Spring Boot" },
+  { "id": 15, "name": "MySQL" },
+  { "id": 16, "name": "Kafka" },
+  { "id": 17, "name": "Elasticsearch" },
+  { "id": 19, "name": "React" },
+  { "id": 20, "name": "Redux" },
+  { "id": 21, "name": "TypeScript" },
+  { "id": 22, "name": "Webpack" },
+  { "id": 23, "name": "Jest" },
+  { "id": 24, "name": "Storybook" },
+  { "id": 25, "name": "Python" },
+  { "id": 26, "name": "Django" },
+  { "id": 27, "name": "PostgreSQL" },
+  { "id": 30, "name": "RESTful API" },
+  { "id": 31, "name": "C#" },
+  { "id": 32, "name": ".NET Core" },
+  { "id": 33, "name": "SQL Server" },
+  { "id": 34, "name": "Azure" },
+  { "id": 35, "name": "Entity Framework" },
+  { "id": 36, "name": "MVC" }
+]
+}    

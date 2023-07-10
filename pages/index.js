@@ -1,19 +1,32 @@
-import { useEffect, useContext, useState } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import styles from '../styles/Home.module.css';
-import { MapContext } from './MapContext';
-import JobList from './components/JobList';
-
+import { MapContext } from './JobContext';
+import JobList from '../components/JobList';
+import TechList from '../components/TechList';
 
 function Home() {
-  const { filteredJobs, updateFilteredJobs } = useContext(MapContext);
+  const { filteredJobs, updateFilteredJobs, techList, fetchTechList } = useContext(MapContext);
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedTechId, setSelectedTechId] = useState(null);
 
   useEffect(() => {
-    updateFilteredJobs(searchTerm);
-  }, [searchTerm, updateFilteredJobs]);
+    updateFilteredJobs(searchTerm, selectedTechId);
+  }, [searchTerm, selectedTechId, updateFilteredJobs]);
+
+  useEffect(() => {
+    fetchTechList();
+  }, [fetchTechList]);
 
   function handleSearch(e) {
     setSearchTerm(e.target.value);
+  }
+
+  function handleTechSelect(techId) {
+    setSelectedTechId(techId);
+  }
+
+  function clearTechFilter() {
+    setSelectedTechId(null);
   }
 
   return (
@@ -24,6 +37,13 @@ function Home() {
         value={searchTerm}
         onChange={handleSearch}
         className={styles.searchInput}
+      />
+
+      <TechList
+        techList={techList}
+        selectedTechId={selectedTechId}
+        onSelect={handleTechSelect}
+        onClear={clearTechFilter}
       />
 
       <JobList jobs={filteredJobs} />

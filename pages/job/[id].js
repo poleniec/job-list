@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import mapboxgl from 'mapbox-gl';
 import JobDetail from './JobDetail';
 
 function JobDetailPage() {
   const [job, setJob] = useState(null);
+  const [tech, setTech] = useState([]);
   const router = useRouter();
   const { id } = router.query;
 
@@ -14,7 +15,6 @@ function JobDetailPage() {
       const data = await res.json();
 
       if (!data) {
-        
         return;
       }
 
@@ -25,6 +25,21 @@ function JobDetailPage() {
       fetchJob();
     }
   }, [id]);
+
+  useEffect(() => {
+    async function fetchTech() {
+      const res = await fetch('http://localhost:5000/tech');
+      const data = await res.json();
+
+      if (!data) {
+        return;
+      }
+
+      setTech(data);
+    }
+
+    fetchTech();
+  }, []);
 
   useEffect(() => {
     if (job) {
@@ -55,13 +70,12 @@ function JobDetailPage() {
     }
   }, [job]);
 
-  if (!job) {
+  if (!job || tech.length === 0) {
     return <div>Loading...</div>;
   }
 
-  return <JobDetail job={job} />;
+  return <JobDetail job={job} tech={tech} />;
 }
 
 export default JobDetailPage;
-
 

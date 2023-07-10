@@ -1,8 +1,9 @@
+import React from 'react';
 import { Box, Button } from '@mui/material';
 import { useRouter } from 'next/router';
-import StarRating from './StarRating';
+import StarRating from '../../components/StarRating';
 
-function JobDetail({ job }) {
+function JobDetail({ job, tech }) {
   const router = useRouter();
   const { id } = router.query;
 
@@ -22,7 +23,11 @@ function JobDetail({ job }) {
         }}
         className="flex items-center p-8 gap-4 bg-blue-500 mt-8"
       >
-        <img className="w-24 h-24 rounded-full bg-blue-900 p-3" src={job.logo} alt={`${job.company} Logo`} />
+        <img
+          className="w-24 h-24 rounded-full bg-blue-900 p-3"
+          src={job.logo}
+          alt={`${job.company} Logo`}
+        />
         <div className="text-white">
           <h1 className="text-2xl font-bold">{job.title}</h1>
           <h2 className="text-lg">{job.company}</h2>
@@ -35,11 +40,14 @@ function JobDetail({ job }) {
         <Box sx={{ backgroundColor: '#FFFFFF', p: 4, borderRadius: 'lg', mb: 4 }}>
           <h2 className="text-xl font-bold text-black">Tech stack:</h2>
           <ul className="flex flex-wrap">
-            {job.techStack.map((tech, index) => (
-              <li key={index} className="text-lg text-black flex items-center mr-6">
-                {tech} <StarRating rating={job.techRatings[index]} />
-              </li>
-            ))}
+            {job.tech.split(',').map((techId, index) => {
+              const techItem = tech.find((item) => item.id === Number(techId));
+              return (
+                <li key={index} className="text-lg text-black flex items-center mr-6">
+                  {techItem && techItem.name} <StarRating rating={job.techRatings[index]} />
+                </li>
+              );
+            })}
           </ul>
         </Box>
 
@@ -53,7 +61,9 @@ function JobDetail({ job }) {
             <h2 className="text-xl font-bold text-black">Obowiązki:</h2>
             <ul className="list-disc ml-6">
               {job.duties.map((duty, index) => (
-                <li key={index} className="text-lg text-black">{duty}</li>
+                <li key={index} className="text-lg text-black">
+                  {duty}
+                </li>
               ))}
             </ul>
           </Box>
@@ -62,7 +72,9 @@ function JobDetail({ job }) {
             <h2 className="text-xl font-bold text-black">Wymagania:</h2>
             <ul className="list-disc ml-6">
               {job.requirements.map((requirement, index) => (
-                <li key={index} className="text-lg text-black">{requirement}</li>
+                <li key={index} className="text-lg text-black">
+                  {requirement}
+                </li>
               ))}
             </ul>
           </Box>
@@ -71,7 +83,9 @@ function JobDetail({ job }) {
             <h2 className="text-xl font-bold text-black">Korzyści:</h2>
             <ul className="list-disc ml-6">
               {job.benefits.map((benefit, index) => (
-                <li key={index} className="text-lg text-black">{benefit}</li>
+                <li key={index} className="text-lg text-black">
+                  {benefit}
+                </li>
               ))}
             </ul>
           </Box>
@@ -79,7 +93,6 @@ function JobDetail({ job }) {
       </Box>
 
       <Button
-        
         color="error"
         onClick={handleApply}
         className="mt-4"
