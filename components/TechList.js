@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Grid, Paper, IconButton } from '@mui/material';
+import { Paper, IconButton, Tooltip } from '@mui/material';
 import { Cancel as CancelIcon } from '@mui/icons-material';
 
 const TechList = ({ techList, onSelect, onClear }) => {
   const [selectedTechId, setSelectedTechId] = useState(null);
+  const limitedTechList = techList.slice(0, 10); 
 
   const handleTechClick = (techId) => {
     if (selectedTechId === techId) {
@@ -16,20 +17,22 @@ const TechList = ({ techList, onSelect, onClear }) => {
   };
 
   return (
-    <div>
-      <Grid container spacing={2}>
-        {techList.map((tech) => (
-          <Grid item xs={6} sm={4} md={3} lg={2} key={tech.id}>
-            <Paper
-              onClick={() => handleTechClick(tech.id)}
-              style={{
-                cursor: 'pointer',
-                padding: '10px',
-                position: 'relative',
-                backgroundColor: selectedTechId === tech.id ? '#e0e0e0' : 'inherit',
-              }}
-            >
-              {tech.name}
+    <div style={{ display: 'flex' }}>
+      {limitedTechList.map((tech) => (
+        <Paper
+          key={tech.id}
+          onClick={() => handleTechClick(tech.id)}
+          style={{
+            cursor: 'pointer',
+            padding: '10px',
+            position: 'relative',
+            backgroundColor: selectedTechId === tech.id ? '#e0e0e0' : 'inherit',
+            marginRight: '10px',
+          }}
+        >
+          <Tooltip title={tech.name}>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              {tech.shortName}
               {selectedTechId === tech.id && (
                 <IconButton
                   style={{ position: 'absolute', top: '0', right: '0' }}
@@ -38,10 +41,10 @@ const TechList = ({ techList, onSelect, onClear }) => {
                   <CancelIcon />
                 </IconButton>
               )}
-            </Paper>
-          </Grid>
-        ))}
-      </Grid>
+            </div>
+          </Tooltip>
+        </Paper>
+      ))}
     </div>
   );
 };

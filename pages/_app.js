@@ -66,8 +66,8 @@ function MyApp({ Component, pageProps }) {
               top: '50%',
               right: 0,
               transform: 'translateY(-50%)',
-              width: '850px',
-              height: '110vh',
+              width: '700px', 
+              height: '700px', 
             }}
           ></div>
         )}

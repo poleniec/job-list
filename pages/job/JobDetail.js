@@ -11,6 +11,15 @@ function JobDetail({ job, tech }) {
     router.push(`/job/apply?id=${id}`);
   };
 
+  const techItems = job.tech.map((techId, index) => {
+    const techItem = tech.find((item) => item.id === techId);
+    return (
+      <li key={index} className="text-lg text-black flex items-center mr-6">
+        {techItem && techItem.name} <StarRating rating={job.techRatings[index]} />
+      </li>
+    );
+  });
+
   return (
     <Box sx={{ minHeight: '100vh', backgroundColor: '#E5E7EB' }}>
       <Box
@@ -40,14 +49,7 @@ function JobDetail({ job, tech }) {
         <Box sx={{ backgroundColor: '#FFFFFF', p: 4, borderRadius: 'lg', mb: 4 }}>
           <h2 className="text-xl font-bold text-black">Tech stack:</h2>
           <ul className="flex flex-wrap">
-            {job.tech.split(',').map((techId, index) => {
-              const techItem = tech.find((item) => item.id === Number(techId));
-              return (
-                <li key={index} className="text-lg text-black flex items-center mr-6">
-                  {techItem && techItem.name} <StarRating rating={job.techRatings[index]} />
-                </li>
-              );
-            })}
+            {techItems}
           </ul>
         </Box>
 

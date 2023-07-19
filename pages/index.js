@@ -3,11 +3,13 @@ import styles from '../styles/Home.module.css';
 import { MapContext } from './JobContext';
 import JobList from '../components/JobList';
 import TechList from '../components/TechList';
+import { TextField, Grid, Autocomplete } from '@mui/material';
 
 function Home() {
   const { filteredJobs, updateFilteredJobs, techList, fetchTechList } = useContext(MapContext);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedTechId, setSelectedTechId] = useState(null);
+  const [cityOptions, setCityOptions] = useState([]);
 
   useEffect(() => {
     updateFilteredJobs(searchTerm, selectedTechId);
@@ -16,6 +18,11 @@ function Home() {
   useEffect(() => {
     fetchTechList();
   }, [fetchTechList]);
+
+  useEffect(() => {
+    const cities = Array.from(new Set(filteredJobs.map(job => job.city))); // Pobranie unikalnych nazw miast z listy przefiltrowanych ofert pracy
+    setCityOptions(cities);
+  }, [filteredJobs]);
 
   function handleSearch(e) {
     setSearchTerm(e.target.value);
@@ -31,22 +38,42 @@ function Home() {
 
   return (
     <div className={styles.container}>
-      <input
-        type="text"
-        placeholder="Szukaj ofert pracy"
-        value={searchTerm}
-        onChange={handleSearch}
-        className={styles.searchInput}
-      />
+      <Grid container spacing={2}>
+        <Grid item xs={6} sm={4}>
+          <TextField
+            label="Szukaj ofert pracy"
+            value={searchTerm}
+            onChange={handleSearch}
+            fullWidth
+            variant="outlined"
+          />
+        </Grid>
+        <Grid item xs={6} sm={4}>
+          <Autocomplete
+            options={cityOptions}
+            value={searchTerm}
+            onChange={(event, value) => setSearchTerm(value)}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label="Miasto"
+                fullWidth
+                variant="outlined"
+              />
+            )}
+          />
+        </Grid>
+        <Grid item xs={6} sm={4}>
+          <TechList
+            techList={techList}
+            selectedTechId={selectedTechId}
+            onSelect={handleTechSelect}
+            onClear={clearTechFilter}
+          />
+        </Grid>
+      </Grid>
 
-      <TechList
-        techList={techList}
-        selectedTechId={selectedTechId}
-        onSelect={handleTechSelect}
-        onClear={clearTechFilter}
-      />
-
-      <JobList jobs={filteredJobs} />
+      <JobList jobs={filteredJobs} tech={techList} />
     </div>
   );
 }
