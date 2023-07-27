@@ -2,16 +2,13 @@ import React, { useState } from 'react';
 import { Paper, IconButton, Tooltip } from '@mui/material';
 import { Cancel as CancelIcon } from '@mui/icons-material';
 
-const TechList = ({ techList, onSelect, onClear }) => {
-  const [selectedTechId, setSelectedTechId] = useState(null);
-  const limitedTechList = techList.slice(0, 10); 
+const TechList = ({ techList, selectedTechId, onSelect, onClear }) => {
+  const limitedTechList = techList.slice(0, 10);
 
   const handleTechClick = (techId) => {
     if (selectedTechId === techId) {
-      setSelectedTechId(null);
       onClear();
     } else {
-      setSelectedTechId(techId);
       onSelect(techId);
     }
   };

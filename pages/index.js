@@ -6,23 +6,32 @@ import TechList from '../components/TechList';
 import { TextField, Grid, Autocomplete } from '@mui/material';
 
 function Home() {
-  const { filteredJobs, updateFilteredJobs, techList, fetchTechList } = useContext(MapContext);
+  const {
+    filteredJobs,
+    updateFilteredJobs,
+    techList,
+    fetchTechList,
+    cityList,
+    fetchCityList,
+  } = useContext(MapContext);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedTechId, setSelectedTechId] = useState(null);
+  const [selectedCity, setSelectedCity] = useState(null);
   const [cityOptions, setCityOptions] = useState([]);
 
   useEffect(() => {
-    updateFilteredJobs(searchTerm, selectedTechId);
-  }, [searchTerm, selectedTechId, updateFilteredJobs]);
+    updateFilteredJobs(searchTerm, selectedTechId, selectedCity?.name);
+  }, [searchTerm, selectedTechId, selectedCity, updateFilteredJobs]);
 
   useEffect(() => {
     fetchTechList();
-  }, [fetchTechList]);
+    fetchCityList();
+  }, [fetchTechList, fetchCityList]);
 
   useEffect(() => {
-    const cities = Array.from(new Set(filteredJobs.map(job => job.city))); // Pobranie unikalnych nazw miast z listy przefiltrowanych ofert pracy
+    const cities = cityList.map((city) => ({ name: city.name })); // Utworzenie listy obiektów miast z listy miast
     setCityOptions(cities);
-  }, [filteredJobs]);
+  }, [cityList]);
 
   function handleSearch(e) {
     setSearchTerm(e.target.value);
@@ -30,6 +39,10 @@ function Home() {
 
   function handleTechSelect(techId) {
     setSelectedTechId(techId);
+  }
+
+  function handleCitySelect(city) {
+    setSelectedCity(city);
   }
 
   function clearTechFilter() {
@@ -51,8 +64,9 @@ function Home() {
         <Grid item xs={6} sm={4}>
           <Autocomplete
             options={cityOptions}
-            value={searchTerm}
-            onChange={(event, value) => setSearchTerm(value)}
+            getOptionLabel={(option) => option.name} // Przekazujemy nazwę miasta jako etykietę opcji
+            value={selectedCity} // Wybrana wartość miasta
+            onChange={(event, value) => handleCitySelect(value)} // Aktualizujemy stan selectedCity po wyborze miasta
             renderInput={(params) => (
               <TextField
                 {...params}
@@ -79,3 +93,4 @@ function Home() {
 }
 
 export default Home;
+

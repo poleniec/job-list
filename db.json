@@ -39,7 +39,7 @@
       "duties": [],
       "requirements": [],
       "benefits": [],
-      "tech": [7, 8, 9, 10, 11, 12],
+      "tech": [7, 8, 9, 10],
       "techRatings": [3, 4, 3, 2, 4, 5],
       "geocoding": {
         "latitude": 50.059112,
@@ -122,13 +122,29 @@
   "tech": [
     { "id": 1, "name": "AWS", "shortName": "AWS" },
     { "id": 2, "name": "CI/CD", "shortName": "CI/CD" },
-    { "id": 3, "name": "Git", "shortName": "Git" },
+    { "id": 3, "name": "Git", "shortName": "GIT" },
     { "id": 4, "name": "Kubernetes", "shortName": "K8s" },
-    { "id": 5, "name": "Ansible", "shortName": "Ansible" },
-    { "id": 6, "name": "Terraform", "shortName": "Terraform" },
-    { "id": 7, "name": "Node.js", "shortName": "Node.js" },
-    { "id": 8, "name": "Express.js", "shortName": "Express.js" },
-    { "id": 9, "name": "MongoDB", "shortName": "MongoDB" },
-    { "id": 10, "name": "Docker", "shortName": "Docker" }
+    { "id": 5, "name": "Ansible", "shortName": "AN" },
+    { "id": 6, "name": "Terraform", "shortName": "TF" },
+    { "id": 7, "name": "Node.js", "shortName": "NJ" },
+    { "id": 8, "name": "Express.js", "shortName": "EJ" },
+    { "id": 9, "name": "MongoDB", "shortName": "MDB" },
+    { "id": 10, "name": "Docker", "shortName": "DCK" }
+  ],
+
+
+  "cities": [
+    {
+      "id": 1,
+      "name": "Warszawa",
+      "latitude": 52.259077,
+      "longitude": 20.993275
+    },
+    {
+      "id": 2,
+      "name": "Kraków",
+      "latitude": 50.059112,
+      "longitude": 19.937892
+    }
   ]
 }

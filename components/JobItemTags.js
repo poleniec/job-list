@@ -1,50 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Chip from '@mui/material/Chip';
+import { MapContext } from '../pages/JobContext';
 
-function JobItemTags({ tech }) {
-  const techMap = {
-    AWS: 'AW',
-    'CI/CD': 'CD',
-    Git: 'GT',
-    Kubernetes: 'KS',
-    Ansible: 'AN',
-    Terraform: 'TF',
-    'Node.js': 'NJ',
-    'Express.js': 'EX',
-    MongoDB: 'MG',
-    Docker: 'DK',
-    Docker: 'DK',
-    Redis: 'RD',
-    GraphQL: 'GQ',
-    Java: 'JA',
-    'Spring Boot': 'SB',
-    MySQL: 'MY',
-    Kafka: 'KF',
-    Elasticsearch: 'ES',
-    React: 'RC',
-    Redux: 'RX',
-    TypeScript: 'TS',
-    Webpack: 'WK',
-    Jest: 'JT',
-    Storybook: 'ST',
-    Python: 'PY',
-    Django: 'DJ',
-    PostgreSQL: 'PG',
-    'RESTful API': 'RA',
-    'C#': 'CS',
-    '.NET Core': 'NC',
-    'SQL Server': 'SS',
-    Azure: 'AZ',
-    'Entity Framework': 'EF',
-    MVC: 'MV',
+function JobItemTags({ techList }) {
+  const { techList: allTechList } = useContext(MapContext);
+
+  const getName = (techId) => {
+    const techItem = allTechList.find((item) => item.id === techId);
+    return techItem ? techItem.name : '';
   };
 
   return (
     <div>
-      {tech.map((techItem) => (
+      {techList.map((techId) => (
         <Chip
-          key={techItem}
-          label={techMap[techItem.name]}
+          key={techId}
+          label={getName(techId)}
           variant="outlined"
           style={{ marginRight: '5px', marginBottom: '5px' }}
         />

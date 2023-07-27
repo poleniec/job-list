@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Button } from '@mui/material';
 import { useRouter } from 'next/router';
-import StarRating from '../../components/StarRating';
+import StarRating from './StarRating';
 
 function JobDetail({ job, tech }) {
   const router = useRouter();

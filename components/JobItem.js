@@ -3,52 +3,7 @@ import Link from 'next/link';
 import styles from '../styles/Home.module.css';
 import JobItemTags from './JobItemTags';
 
-function JobItem({ job, tech }) {
-  const techMap = {
-    AWS: 'AW',
-    'CI/CD': 'CD',
-    Git: 'GT',
-    Kubernetes: 'KS',
-    Ansible: 'AN',
-    Terraform: 'TF',
-    'Node.js': 'NJ',
-    'Express.js': 'EX',
-    MongoDB: 'MG',
-    Docker: 'DK',
-    Redis: 'RD',
-    GraphQL: 'GQ',
-    Java: 'JA',
-    'Spring Boot': 'SB',
-    MySQL: 'MY',
-    Kafka: 'KF',
-    Elasticsearch: 'ES',
-    React: 'RC',
-    Redux: 'RX',
-    TypeScript: 'TS',
-    Webpack: 'WK',
-    Jest: 'JT',
-    Storybook: 'ST',
-    Python: 'PY',
-    Django: 'DJ',
-    PostgreSQL: 'PG',
-    'RESTful API': 'RA',
-    'C#': 'CS',
-    '.NET Core': 'NC',
-    'SQL Server': 'SS',
-    Azure: 'AZ',
-    'Entity Framework': 'EF',
-    MVC: 'MV',
-   
-  };
-
-  const techList = job.tech.map((techId) => {
-    const techItem = tech.find((item) => item.id === techId);
-    if (techItem) {
-      return { ...techItem, shortName: techMap[techItem.name] };
-    }
-    return null;
-  }).filter(Boolean);
-
+function JobItem({ job }) {
   return (
     <Link href={`/job/${job.id}`} passHref>
       <li className={styles.jobCard}>
@@ -63,11 +18,10 @@ function JobItem({ job, tech }) {
           </div>
           <p className={styles.jobSalary}>{job.salary}</p>
         </div>
-        <JobItemTags tech={techList} />
+        <JobItemTags techList={job.tech} />
       </li>
     </Link>
   );
 }
 
 export default JobItem;
-

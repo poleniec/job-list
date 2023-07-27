@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import mapboxgl from 'mapbox-gl';
-import JobDetail from './JobDetail';
+import JobDetail from '../../components/JobDetail';
 
 function JobDetailPage() {
   const [job, setJob] = useState(null);
