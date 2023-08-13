@@ -4,7 +4,7 @@ import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import React, { useEffect, useState } from 'react';
 import { JobProvider } from './JobContext';
-
+import { Grid } from '@mui/material';
 
 mapboxgl.accessToken =
   'pk.eyJ1IjoicG9sZW5pZWMiLCJhIjoiY2xpdDIydjhnMHFsdTNlb3Roa3ZzdzB0eiJ9.ffyRmJngLhj1hRsfg5bQUw';
@@ -57,25 +57,30 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <JobProvider>
-      <div>
+      <div style={{ display: 'flex' }}>
+        <div style={{ flex: 1 }}>
+          <Component {...pageProps} />
+        </div>
         {router.pathname !== '/job/apply' && (
-          <div
-            id="map"
-            style={{
-              position: 'fixed',
-              top: '50%',
-              right: 0,
-              transform: 'translateY(-50%)',
-              width: '700px', 
-              height: '700px', 
-            }}
-          ></div>
+          <div style={{ flex: '0 0 1000px', marginLeft: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div
+              id="map"
+              style={{
+                width: '100%',
+                height: '600px',
+              }}
+            ></div>
+          </div>
         )}
-
-        <Component {...pageProps} />
       </div>
     </JobProvider>
   );
 }
 
 export default MyApp;
+
+
+
+
+
+

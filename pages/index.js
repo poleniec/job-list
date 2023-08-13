@@ -29,7 +29,7 @@ function Home() {
   }, [fetchTechList, fetchCityList]);
 
   useEffect(() => {
-    const cities = cityList.map((city) => ({ name: city.name })); // Utworzenie listy obiektów miast z listy miast
+    const cities = cityList.map((city) => ({ name: city.name }));
     setCityOptions(cities);
   }, [cityList]);
 
@@ -52,7 +52,7 @@ function Home() {
   return (
     <div className={styles.container}>
       <Grid container spacing={2}>
-        <Grid item xs={6} sm={4}>
+        <Grid item xs={12} sm={6} md={4}>
           <TextField
             label="Szukaj ofert pracy"
             value={searchTerm}
@@ -61,12 +61,12 @@ function Home() {
             variant="outlined"
           />
         </Grid>
-        <Grid item xs={6} sm={4}>
+        <Grid item xs={12} sm={6} md={4}>
           <Autocomplete
             options={cityOptions}
-            getOptionLabel={(option) => option.name} // Przekazujemy nazwę miasta jako etykietę opcji
-            value={selectedCity} // Wybrana wartość miasta
-            onChange={(event, value) => handleCitySelect(value)} // Aktualizujemy stan selectedCity po wyborze miasta
+            getOptionLabel={(option) => option.name}
+            value={selectedCity}
+            onChange={(event, value) => handleCitySelect(value)}
             renderInput={(params) => (
               <TextField
                 {...params}
@@ -77,7 +77,7 @@ function Home() {
             )}
           />
         </Grid>
-        <Grid item xs={6} sm={4}>
+        <Grid item xs={12} sm={12} md={4}>
           <TechList
             techList={techList}
             selectedTechId={selectedTechId}
@@ -93,4 +93,3 @@ function Home() {
 }
 
 export default Home;
-
