@@ -1,11 +1,11 @@
 import React, { useEffect, useContext, useState } from 'react';
-import styles from '../styles/Home.module.css';
+
 import { MapContext } from './JobContext';
 import JobList from '../components/JobList';
 import TechList from '../components/TechList';
-import { TextField, Grid, Autocomplete } from '@mui/material';
+import { TextField, Grid, Autocomplete, Box } from '@mui/material';
 
-function Home() {
+function Home({ Component, pageProps }) {
   const {
     filteredJobs,
     updateFilteredJobs,
@@ -50,46 +50,77 @@ function Home() {
   }
 
   return (
-    <div className={styles.container}>
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm={6} md={4}>
-          <TextField
-            label="Szukaj ofert pracy"
-            value={searchTerm}
-            onChange={handleSearch}
-            fullWidth
-            variant="outlined"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <Autocomplete
-            options={cityOptions}
-            getOptionLabel={(option) => option.name}
-            value={selectedCity}
-            onChange={(event, value) => handleCitySelect(value)}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                label="Miasto"
-                fullWidth
-                variant="outlined"
-              />
-            )}
-          />
-        </Grid>
-        <Grid item xs={12} sm={12} md={4}>
-          <TechList
-            techList={techList}
-            selectedTechId={selectedTechId}
-            onSelect={handleTechSelect}
-            onClear={clearTechFilter}
-          />
+    <Grid container direction="column" sx={{ background: 'red', width: '100%', height: '100vh' }}>
+      <Grid container sx={{ background: 'orange', height: '10%' }}>
+        <Grid container spacing={2} alignItems="center">
+          <Grid item xs={12} sm={6} md={4}>
+            <TextField
+              label="Szukaj ofert pracy"
+              value={searchTerm}
+              onChange={handleSearch}
+              fullWidth
+              variant="outlined"
+            />
+          </Grid>
+          <Grid item xs={12} sm={6} md={4}>
+            <Autocomplete
+              options={cityOptions}
+              getOptionLabel={(option) => option.name}
+              value={selectedCity}
+              onChange={(event, value) => handleCitySelect(value)}
+              renderInput={(params) => (
+                <TextField {...params} label="Miasto" fullWidth variant="outlined" />
+              )}
+            />
+          </Grid>
+          <Grid item xs={12} sm={12} md={4}>
+            <TechList
+              techList={techList}
+              selectedTechId={selectedTechId}
+              onSelect={handleTechSelect}
+              onClear={clearTechFilter}
+            />
+          </Grid>
         </Grid>
       </Grid>
-
-      <JobList jobs={filteredJobs} tech={techList} />
-    </div>
+      <Grid item container sx={{ height: '90%' }}>
+        <Grid
+          item
+          sm={8}
+          xs={12}
+          sx={{ background: 'pink', overflowY: 'auto', maxHeight: '100%' }}
+        >
+          <Box sx={{ mb: 2 }}>KONTENER OFERT PRACY</Box>
+          {Array(20)
+            .fill()
+            .map((el, i) => (
+              <div style={{ overflowY: 'auto' }} key={i}>
+                {/* JobList component */}
+                <JobList jobs={filteredJobs} tech={techList} />
+              </div>
+            ))}
+        </Grid>
+        <Grid item sm={4} xs={false} sx={{ background: 'green' }}>
+          <div
+            id="map" // Użyj właściwego ID dla kontenera mapy
+            style={{
+              display: 'flex',
+              background: '#dfdfdf',
+              width: '100%',
+              height: '100%',
+            }}
+          >
+            {/* Tutaj umieść swój kod do renderowania komponentu mapy */}
+            {/* Pamiętaj, że mapę musisz zainicjować w odpowiednim momencie */}
+          </div>
+        </Grid>
+      </Grid>
+    </Grid>
   );
+  
+  
+  
+  
 }
 
 export default Home;

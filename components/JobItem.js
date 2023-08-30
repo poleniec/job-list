@@ -1,26 +1,30 @@
 import React from 'react';
 import Link from 'next/link';
-import styles from '../styles/Home.module.css';
+import { Box, Grid, Typography } from '@mui/material';
 import JobItemTags from './JobItemTags';
 
 function JobItem({ job }) {
   return (
-    <Link href={`/job/${job.id}`} passHref>
-      <li className={styles.jobCard}>
-        <div className={styles.jobLogoContainer}>
-          <img className={styles.jobLogo} src={job.logo} alt={`${job.company} Logo`} />
-        </div>
-        <div className={styles.jobInfo}>
-          <h3 className={styles.jobTitle}>{job.title}</h3>
-          <div className={styles.jobDetails}>
-            <p className={styles.jobCity}>{job.city}</p>
-            <p className={styles.jobCompany}>{job.company}</p>
-          </div>
-          <p className={styles.jobSalary}>{job.salary}</p>
-        </div>
-        <JobItemTags techList={job.tech} />
-      </li>
-    </Link>
+    <Box sx={{ marginBottom: 2 }}>
+      <Link href={`/job/${job.id}`} passHref>
+        <Box component="li" sx={{ p: 2, backgroundColor: 'white', borderRadius: 8, boxShadow: 1 }}>
+          <Grid container alignItems="center" spacing={2}>
+            <Grid item>
+              <img src={job.logo} alt={`${job.company} Logo`} style={{ width: 50, height: 50 }} />
+            </Grid>
+            <Grid item xs>
+              <Typography variant="h6">{job.title}</Typography>
+              <Typography>{job.city}</Typography>
+              <Typography>{job.company}</Typography>
+              <Typography>{job.salary}</Typography>
+            </Grid>
+            <Grid item>
+              <JobItemTags techList={job.tech} />
+            </Grid>
+          </Grid>
+        </Box>
+      </Link>
+    </Box>
   );
 }
 
